@@ -20,13 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9c28b93-375b-48df-9e3e-7361c87fde61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SkyfallenCodeLib/AppAPIs/AppCenterAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/error.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configuration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkyfallenCodeLib/AppAPIs/AppCenterAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/SkyfallenCodeLib/AppAPIs/AppCenterAPI.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601926415915</updated>
-      <workItem from="1601926417117" duration="6712000" />
+      <workItem from="1601926417117" duration="7708000" />
     </task>
     <servers />
   </component>
