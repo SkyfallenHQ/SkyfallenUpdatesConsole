@@ -24,16 +24,17 @@ define('DB_USERNAME_LOGIN', 'main');
 define('DB_PASSWORD_LOGIN', '');
 define('DB_NAME_LOGIN', 'appcenter');
 // Finish editing
-global $loginlinkink;
+global $loginlink;
 
 $loginlink = mysqli_connect(DB_SERVER_LOGIN, DB_USERNAME_LOGIN, DB_PASSWORD_LOGIN, DB_NAME_LOGIN);
 
 if ($loginlink === false) {
     Errors::killapp("Database connection to developer login server could not be successfully established. Application will now stop all processes.", "App Crashed");
 }
+
 // Code Required By Skyfallen Code Library Classes
 // Do not edit
-define("API_ENDPOINT","https://devlogin.api.theskyfallen.com");
+define("API_ENDPOINT","https://devlogin.api.theskyfallen.com/api/");
 define("API_TYPE","SKYFALLENAPPCENTERAPI");
 define("CONNECTION_INFASTRUCTURE","INTERNET");
 define("SANDOX",false);

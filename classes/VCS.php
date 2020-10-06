@@ -12,7 +12,7 @@ class VCS
         }
         // Check if version already exists in database
         $sql = "SELECT * FROM versions WHERE appid='".$appid."' and versionid='".$version."'";
-        if($result = mysqli_query($sql,$link)){
+        if($result = mysqli_query($link,$sql)){
             if(mysqli_num_rows($result) > 0){
                 return false;
             }
@@ -47,7 +47,7 @@ class VCS
                 $zip->close();
 
                 $ivsql = "INSERT INTO versions (appid,vtype,seed,versionid,datapath,title,info,releasedate) VALUES ('".$appid."','".$type."','".$seed."','".$version."','".$datapath."','".$title."','".$info."','".date("d/m/Y h:i:sa")."')";
-                if(mysqli_query($ivsql,$link)){
+                if(mysqli_query($link,$ivsql)){
                     return true;
                 } else {
                     return mysqli_error($link);
@@ -58,7 +58,7 @@ class VCS
     }
     public static function deleteVersion($link,$appid,$version){
         $dvsql = "DELETE FROM versions WHERE appid='".$appid."' and versionid='".$version."'";
-        if(mysqli_query($dvsql,$link)){
+        if(mysqli_query($link,$dvsql)){
             return true;
         } else {
             return mysqli_error($link);

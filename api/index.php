@@ -1,7 +1,7 @@
 <?php
 if($_POST["action"]=="login"){
     // Initialize the session
-    session_name("AppCenterSession");
+    session_name("DeveloperIDSession");
     session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -94,7 +94,7 @@ if($_POST["action"]=="login"){
     mysqli_close($loginlink);
 }
 if($_POST["action"]=="logout"){
-    session_name("AppCenterSession");
+    session_name("DeveloperIDSession");
     session_start();
     $_SESSION = array();
     session_destroy();
