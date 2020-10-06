@@ -39,3 +39,6 @@ define("CONNECTION_INFASTRUCTURE","INTERNET");
 define("SANDOX",false);
 define("APPNAME","SkyfallenUpdatesConsole");
 define("APPID","459d38c4d473e7dfdd464e01b9955eb9");
+define("LIVEPATCHING_ENABLED",false);
+define("DLDOMAIN","https://updateserver.theskyfallen.com");
+define("PANELDOMAIN","https://updatesconsole.theskyfallen.com");
