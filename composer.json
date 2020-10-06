@@ -1,0 +1,15 @@
+{
+  "name": "skyfallen/skyfallenupdateconsole",
+  "description": "Skyfallens Update Console. Official Source Code.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "YigitKeremOktay",
+      "email": "yigitkerem@theskyfallen.com"
+    }
+  ],
+  "require": {
+    "czproject/git-php": "3.18.*"
+  }
+}
