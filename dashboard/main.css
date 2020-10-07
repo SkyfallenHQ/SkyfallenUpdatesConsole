@@ -1,0 +1,30 @@
+.suc-menu{
+    height: 40px;
+    top: 0;
+    width: 100%;
+    background: rgba(195, 196, 203, 0.15);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    box-shadow: 0px -2px 5px 6px #94989c;
+    text-align: center;
+}
+.menu-item {
+    padding-top: 20px;
+    color: #777777;
+    text-decoration: none;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.menu-item:hover {
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+.menu-item-container{
+    margin-top: 8px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}

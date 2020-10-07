@@ -10,7 +10,11 @@ require_once "../configuration.php";
 require_once "../vendor/autoload.php";
 session_name("DeveloperIDSession");
 session_start();
-ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+if(SANDOX) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+}
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: /");
     exit;
@@ -19,15 +23,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html>
 <head>
     <title>App Updates Console - Skyfallen Developers</title>
-    <!-- CSS only -->
+    <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="main.css">
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="margin-top: 50px;">
+<div class="suc-menu">
+    <img src="https://theskyfallen.company/wp-content/uploads/2020/07/IMG_0183.png" style="float:left; height: 30px; display: inline; margin-top: 5px; margin-left: 30%;">
+    <div class="menu-item-container">
+    <a class="menu-item" href="/dashboard/">Home</a>
+    <a class="menu-item" href="/dashboard/?page=myapps">My Apps</a>
+    <a class="menu-item" href="/?logout=true">Logout</a>
+    </div>
+    <img src="../img/sfdev.png" style="height: 30px; display: inline; margin-top: 5px; float: right; margin-right: 20%;">
+</div>
 <?php if(!isset($_GET["wizard"]) and !isset($_GET["page"])){ ?>
     <div class="card text-center" style="width: 60%; margin-right: auto; margin-left: auto; margin-top: 30px; margin-bottom: 30px;">
         <div class="card-header">
@@ -357,7 +370,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     }
     if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
         $packagepath = "../".\SkyfallenUpdatesConsole\Package::getPackageArray($link,$_SESSION["username"],$_POST["pkgid"])["packagepath"];
-        echo $packagepath;
         \SkyfallenUpdatesConsole\VCS::newVersion($link,$_SESSION["username"],$_GET["appid"],"MANUALVERSION",$_POST["seed"],$_POST["vid"],$_POST["vtitle"],$_POST["description"],$packagepath);
     }
     $versions = \SkyfallenUpdatesConsole\VCS::listVersions($link,$_SESSION["username"],$_GET["appid"]);

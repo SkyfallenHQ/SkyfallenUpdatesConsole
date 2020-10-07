@@ -101,6 +101,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"] == "register" and AL
 </head>
 
 <body onload="onpagloadcheck()">
+<?php
+if($_GET["logout"] == "true"){
+?>
+<script>
+    var http = new XMLHttpRequest();
+    var url = '/api/';
+    var params = 'action=logout';
+    http.open('POST', url, true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    http.onreadystatechange = function() {//Call a function when the state changes.
+        if(http.readyState == 4 && http.status == 200) {
+            $(document).ready(function() {
+                $(".titleo").fadeOut(400,function (){
+                    $(".titleo").html("Logged out successfully.");
+                });
+                $(".titleo").fadeIn(1000);
+                $(".titleo").fadeOut(2000,function (){
+                    $(".titleo").html("Sign in - Skyfallen Updates Console");
+                });
+                $(".titleo").fadeIn(1000);
+            })
+        }
+        if(http.readyState == 4 && http.status == 403) {
+            alert("An unknown error occured.");
+        }
+    }
+    http.send(params);
+</script>
+<?php
+}
+?>
 <form method="post" class="centered" id="form">
     <div class="container centered text-center" id="outsider">
         <div id="middle">
@@ -108,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"] == "register" and AL
                 <img src="https://theskyfallen.company/wp-content/uploads/2020/07/IMG_0183.png" style="height: 100px;">
             </div>
             <div class="field text-center">
-                <h3>Sign <?php if($_GET["action"] != "register"){ echo "in"; } else { echo "up"; } ?> to Skyfallen Updates Console</h3>
+                <h3 class="titleo"><?php if($_GET["action"] != "register"){ echo "Sign in  to Skyfallen Updates Console"; } else { echo "Sign up  to Skyfallen Updates Console"; } ?></h3>
             </div>
             <div class="field">
                 <input type="text" required autocomplete="off" id="username" name="username" style="border-radius: 10px 10px 0px 0px;">
