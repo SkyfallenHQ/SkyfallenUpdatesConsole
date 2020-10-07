@@ -41,6 +41,7 @@ class VCS
 
     public static function newVersion($link,$username,$appid,$type,$seed,$version,$title,$info,$packagedir){
             $datapath = "/updatedl/app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";
+            $webpath = $datapath;
             $dirpath = "../updatedl/app-".$appid."/".$seed."/".$type."-updates/";
         if (!file_exists($dirpath)) {
             mkdir($dirpath, 0777, true);
@@ -82,7 +83,7 @@ class VCS
 
                 $zip->close();
 
-                $ivsql = "INSERT INTO versions (appid,vtype,seed,versionid,datapath,title,info,releasedate,islatest,owner) VALUES ('".$appid."','".$type."','".$seed."','".$version."','".$datapath."','".$title."','".$info."','".date("d/m/Y h:i:sa")."','NO','".$username."')";
+                $ivsql = "INSERT INTO versions (appid,appsecret,vtype,seed,versionid,datapath,title,info,releasedate,islatest,owner) VALUES ('".$appid."','NOTREQUIRED','".$type."','".$seed."','".$version."','".$webpath."','".$title."','".$info."','".date("d/m/Y h:i:sa")."','NO','".$username."')";
                 if(mysqli_query($link,$ivsql)){
                     return true;
                 } else {
@@ -92,7 +93,21 @@ class VCS
         }
 
     }
-    public static function deleteVersion($link,$appid,$version){
+    public static function deleteVersion($link,$appid,$version,$username){
+        $versiondata = array();
+        $sql = "SELECT * FROM versions WHERE owner='".$username."' and appid='".$appid."' and versionid='".$version."'";
+        if($res = mysqli_query($link,$sql)){
+            if(mysqli_num_rows($res) == 1){
+                while ($row = mysqli_fetch_array($res)){
+                    $versiondata = $row;
+                }
+            } else {
+                return false;
+            }
+        }else {
+            return false;
+        }
+        unlink("..".$versiondata["datapath"]);
         $dvsql = "DELETE FROM versions WHERE appid='".$appid."' and versionid='".$version."'";
         if(mysqli_query($link,$dvsql)){
             return true;

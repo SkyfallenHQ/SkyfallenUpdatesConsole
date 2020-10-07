@@ -347,11 +347,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 <?php if($_GET["page"] == "updates" and isset($_GET["appid"])){
-    if($_POST["newversionid"]){
-
-    }
     if($_GET["del"]){
-
+        echo \SkyfallenUpdatesConsole\VCS::deleteVersion($link,$_GET["appid"],$_GET["del"],$_SESSION["username"]);
+        //header("location: ?page=".$_GET["page"]."&appid=".$_GET["appid"]);
+    }
+    if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
+        $packagepath = "../".\SkyfallenUpdatesConsole\Package::getPackageArray($link,$_SESSION["username"],$_POST["pkgid"])["packagepath"];
+        echo $packagepath;
+        \SkyfallenUpdatesConsole\VCS::newVersion($link,$_SESSION["username"],$_GET["appid"],"MANUALVERSION",$_POST["seed"],$_POST["vid"],$_POST["vtitle"],$_POST["description"],$packagepath);
     }
     $versions = \SkyfallenUpdatesConsole\VCS::listVersions($link,$_SESSION["username"],$_GET["appid"]);
     ?>
@@ -388,30 +391,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <button type="submit" class="btn btn-light">Create New Release</button>
     </form>
     <?php
-    if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
-            $packagepath = "../".\SkyfallenUpdatesConsole\Package::getPackageArray($link,$_SESSION["username"],$_POST["pkgid"])["packagepath"];
-            echo $packagepath;
-            \SkyfallenUpdatesConsole\VCS::newVersion($link,$_SESSION["username"],$_GET["appid"],"MANUALVERSION",$_POST["seed"],$_POST["vid"],$_POST["vtitle"],$_POST["description"],$packagepath);
-    }
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
     echo "<thead>";
     echo "<tr>";
+    echo "<th scope='col'>#</th>";
     echo "<th scope='col'>Version ID</th>";
     echo "<th scope='col'>Seed</th>";
     echo "<th scope='col'>Title</th>";
     echo "<th scope='col'>Is Latest?</th>";
     echo "<th scope='col'>Release Date</th>";
+    echo "<th scope='col'>DELETE</th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
-    foreach ($versions as $version){
+    foreach ($versions as $versionentry => $version){
         echo "<tr>";
-        $vdata = \SkyfallenUpdatesConsole\VCS::getVersionData($link,$_SESSION["username"],$_GET["appid"],$version);
+        echo "<td>".$versionentry."</td>";
+        $vdata = \SkyfallenUpdatesConsole\VCS::getVersionData($link,$_SESSION["username"],$_GET["appid"],$versionentry);
         echo "<td>".$vdata["versionid"]."</td>";
         echo "<td>".$vdata["seed"]."</td>";
         echo "<td>".$vdata["title"]."</td>";
-        echo "<td>".$vdata["islatest"]."</td>";
+        if($vdata["islatest"] == "NO"){
+            echo "<td>".$vdata["islatest"]." <a href='?page=updates&appid=".$_GET["appid"]."&makelatest=".$vdata["versionid"]."'>Make Latest?</a></td>";
+        }else{
+            echo "<td>".$vdata["islatest"]."</td>";
+        }
         echo "<td>".$vdata["releasedate"]."</td>";
+        echo "<td><a href='?page=updates&appid=".$_GET["appid"]."&del=".$vdata["versionid"]."'>DELETE</a></td>";
         echo "</tr>";
     }
     echo "</tbody>";
