@@ -42,7 +42,7 @@ class VCS
 
     public static function newVersion($link,$username,$appid,$type,$seed,$version,$datapath = "DEFAULT",$title,$info,$packagedir){
         if($datapath == "DEFAULT"){
-            $datapath = "app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";
+            $datapath = "../updatedl/app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";
         }
         // Check if version already exists in database
         $sql = "SELECT * FROM versions WHERE appid='".$appid."' and versionid='".$version."'";

@@ -359,13 +359,38 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h3>App Name: <?php echo \SkyfallenUpdatesConsole\AppImporter::getImportedAppNameFromID($link,$_GET["appid"]); ?></h3>
         <h4>App ID: <?php echo $_GET["appid"]; ?></h4>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Seed Name" aria-label="New Seed" name="newseedname" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create New Seed</button>
-            </div>
+            <input type="text" class="form-control" placeholder="Version Title" aria-label="Version Title" name="vtitle" aria-describedby="button-addon2" required>
         </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Version ID" aria-label="Version ID" name="vid" aria-describedby="button-addon2" required>
+        </div>
+        <textarea class="form-control" id="FormControlTextarea1" rows="3" name="description" placeholder="Description" style="margin-bottom: 15px;" required></textarea>
+        <div class="input-group mb-3">
+            <select class="custom-select" id="inputGroupSelect02" name="seed" required>
+                <?php
+                $packages = \SkyfallenUpdatesConsole\Package::listPackages($link,$_SESSION["username"],$_GET["appid"]);
+                foreach ($packages as $packageid => $packagename){
+                    echo "<option value='".$packageid."'>".$packagename."</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <select class="custom-select" id="inputGroupSelect02" name="pkgid" required>
+                <?php
+                $seeds = \SkyfallenUpdatesConsole\VCS::listSeeds($link,$_GET["appid"],$_SESSION["username"]);
+                foreach ($seeds as $seed){
+                    echo "<option value='".$seed."'>".$seed."</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-light">Create New Release</button>
     </form>
     <?php
+    if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
+            \SkyfallenUpdatesConsole\VCS::newVersion();
+    }
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
     echo "<thead>";
     echo "<tr>";
