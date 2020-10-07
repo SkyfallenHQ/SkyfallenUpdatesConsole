@@ -3,7 +3,6 @@
 
 namespace SkyfallenUpdatesConsole;
 
-
 class VCS
 {
     public static function newSeed($link,$seedname,$appid,$username){
@@ -40,9 +39,11 @@ class VCS
         }
     }
 
-    public static function newVersion($link,$username,$appid,$type,$seed,$version,$datapath = "DEFAULT",$title,$info,$packagedir){
-        if($datapath == "DEFAULT"){
-            $datapath = "../updatedl/app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";
+    public static function newVersion($link,$username,$appid,$type,$seed,$version,$title,$info,$packagedir){
+            $datapath = "/updatedl/app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";
+            $dirpath = "../updatedl/app-".$appid."/".$seed."/".$type."-updates/";
+        if (!file_exists($dirpath)) {
+            mkdir($dirpath, 0777, true);
         }
         // Check if version already exists in database
         $sql = "SELECT * FROM versions WHERE appid='".$appid."' and versionid='".$version."'";
@@ -52,16 +53,18 @@ class VCS
             }
             else {
                 mysqli_free_result($result);
-                // Get real path for our folder
-                $rootPath = realpath($packagedir);
-
-                $zip = new ZipArchive();
-                $zip->open($datapath, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-
+                // Get real path for our folde
+                chdir($packagedir);
+                $rootPath = getcwd();
+                $zip = new \ZipArchive();
+                chdir(__DIR__);
+                chdir("..");
+                $datapath = getcwd().$datapath;
+                $zip->open($datapath, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
                 /** @var SplFileInfo[] $files */
-                $files = new RecursiveIteratorIterator(
-                    new RecursiveDirectoryIterator($rootPath),
-                    RecursiveIteratorIterator::LEAVES_ONLY
+                $files = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($rootPath),
+                    \RecursiveIteratorIterator::LEAVES_ONLY
                 );
 
                 foreach ($files as $name => $file)
@@ -72,9 +75,8 @@ class VCS
                         // Get real and relative path for current file
                         $filePath = $file->getRealPath();
                         $relativePath = substr($filePath, strlen($rootPath) + 1);
-
                         // Add current file to archive
-                        $zip->addFile($filePath, $relativePath);
+                        $zip->addFile($filePath,$relativePath);
                     }
                 }
 

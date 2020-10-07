@@ -53,6 +53,7 @@ class Package
                 return false;
             }
         }else {
+            echo mysqli_error($link);
             return false;
         }
     }

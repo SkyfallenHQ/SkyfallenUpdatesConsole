@@ -366,7 +366,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </div>
         <textarea class="form-control" id="FormControlTextarea1" rows="3" name="description" placeholder="Description" style="margin-bottom: 15px;" required></textarea>
         <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02" name="seed" required>
+            <select class="custom-select" id="inputGroupSelect02" name="pkgid" required>
                 <?php
                 $packages = \SkyfallenUpdatesConsole\Package::listPackages($link,$_SESSION["username"],$_GET["appid"]);
                 foreach ($packages as $packageid => $packagename){
@@ -376,7 +376,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </select>
         </div>
         <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02" name="pkgid" required>
+            <select class="custom-select" id="inputGroupSelect02" name="seed" required>
                 <?php
                 $seeds = \SkyfallenUpdatesConsole\VCS::listSeeds($link,$_GET["appid"],$_SESSION["username"]);
                 foreach ($seeds as $seed){
@@ -390,7 +390,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <?php
     if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
             $packagepath = "../".\SkyfallenUpdatesConsole\Package::getPackageArray($link,$_SESSION["username"],$_POST["pkgid"])["packagepath"];
-            \SkyfallenUpdatesConsole\VCS::newVersion($link,$_SESSION["username"],$_GET["appid"],"MANUALVERSION",$_POST["seed"],$_POST["vid"],"DEFAULT",$_POST["vtitle"],$_POST["description"],$packagepath);
+            echo $packagepath;
+            \SkyfallenUpdatesConsole\VCS::newVersion($link,$_SESSION["username"],$_GET["appid"],"MANUALVERSION",$_POST["seed"],$_POST["vid"],$_POST["vtitle"],$_POST["description"],$packagepath);
     }
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
     echo "<thead>";
