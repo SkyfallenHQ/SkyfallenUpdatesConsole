@@ -268,9 +268,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         return;
     }
     if(isset($_GET["dir"])){
-        echo "";
-        echo "<td><a>FILE</a></td>";
-        echo "<td><a href='?page=packages&appid=" . $_GET['appid'] . "&edit=" . $_GET["edit"] . "&del=" . urlencode($flink) . "' >DELETE</a></td>";
+        echo "<tr>";
+        echo "<td><a href='?page=packages&appid=" . $_GET['appid'] . "&edit=" . $_GET["edit"]."'>..</a></td>";
+        echo "<td><a href='?page=packages&appid=" . $_GET['appid'] . "&edit=" . $_GET["edit"]."'>..</a></td>";
+        echo "<td><a href='?page=packages&appid=" . $_GET['appid'] . "&edit=" . $_GET["edit"]."'>..</a></td>";
         echo "</tr>";
     }
     //if ($path) echo '<a href="?file='.urlencode(substr(dirname($root.$path), strlen($root) + 1)).'">..</a><br />';
