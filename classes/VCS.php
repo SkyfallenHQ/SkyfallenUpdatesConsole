@@ -147,4 +147,10 @@ class VCS
             return false;
         }
     }
+    public static function makeLatest($link,$username,$appid,$vid){
+        $sql = "UPDATE versions SET islatest='NO' WHERE owner='".$username."' and appid='".$appid."' and islatest='YES'";
+        mysqli_query($link,$sql);
+        $sql = "UPDATE versions SET islatest='YES' WHERE owner='".$username."' and appid='".$appid."' and versionid='".$vid."'";
+        mysqli_query($link,$sql);
+    }
 }

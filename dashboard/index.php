@@ -348,8 +348,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 <?php if($_GET["page"] == "updates" and isset($_GET["appid"])){
     if($_GET["del"]){
-        echo \SkyfallenUpdatesConsole\VCS::deleteVersion($link,$_GET["appid"],$_GET["del"],$_SESSION["username"]);
-        //header("location: ?page=".$_GET["page"]."&appid=".$_GET["appid"]);
+        \SkyfallenUpdatesConsole\VCS::deleteVersion($link,$_GET["appid"],$_GET["del"],$_SESSION["username"]);
+        header("location: ?page=".$_GET["page"]."&appid=".$_GET["appid"]);
+    }
+    if($_GET["makelatest"]){
+        \SkyfallenUpdatesConsole\VCS::makeLatest($link,$_SESSION["username"],$_GET["appid"],$_GET["makelatest"]);
+        header("location: ?page=".$_GET["page"]."&appid=".$_GET["appid"]);
     }
     if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
         $packagepath = "../".\SkyfallenUpdatesConsole\Package::getPackageArray($link,$_SESSION["username"],$_POST["pkgid"])["packagepath"];
