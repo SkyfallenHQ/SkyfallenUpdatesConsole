@@ -159,10 +159,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div style="margin-left: auto; margin-right: auto; width: 80%; text-align: center;">
         <h3>App Name: <?php echo \SkyfallenUpdatesConsole\AppImporter::getImportedAppNameFromID($link,$_GET["appid"]); ?></h3>
         <h4>App ID: <?php echo $_GET["appid"]; ?></h4>
+        <form method="post" style="width: 40%; margin-right: auto; margin-left: auto;">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Package Name" aria-label="New Package" name="newpkgname" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create New Package</button>
+            </div>
+        </div>
+        </form>
     </div>
     <?php
+    if(isset($_POST["newpkgname"])){
+        \SkyfallenUpdatesConsole\Package::createPackage($link,"DEFAULT","DEFAULT",$_SESSION["username"],$_POST["newpkgname"],$_GET["appid"],"NOT SPECIFIED");
+        header("location: ?page=packages&appid=".$_GET["appid"]);
+    }
     if(isset($_GET["del"])){
         \SkyfallenUpdatesConsole\Package::deletePackage($link,$_GET["del"],$_SESSION["username"]);
+        header("location: ?page=packages&appid=".$_GET["appid"]);
     }
     echo '<div style="text-align: center; width: 100%; text-align: center; margin-top: 50px;">';
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
@@ -194,6 +207,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
     <?php
     echo '<div style="text-align: center; width: 100%; text-align: center; margin-top: 50px;">';
+    ?>
+    <form method="post" style="width: 40%; margin-right: auto; margin-left: auto;">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Git URL" aria-label="Git URL" name="giturl" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Clone</button>
+            </div>
+        </div>
+        </form>
+    <?php
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
     echo "<thead>";
     echo "<tr>";
@@ -213,7 +236,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             \SkyfallenUpdatesConsole\Utils::removedir($_GET["del"]);
         }
     }
-
+    if(isset($_POST["giturl"])){
+        \Cz\Git\GitRepository::cloneRepository($_POST["giturl"],"");
+    }
     $root = getcwd();
 
     function is_in_dir($file, $directory, $recursive = true, $limit = 1000) {
