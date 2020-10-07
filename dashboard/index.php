@@ -389,7 +389,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </form>
     <?php
     if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
-            \SkyfallenUpdatesConsole\VCS::newVersion();
+            $packagepath = "../".\SkyfallenUpdatesConsole\Package::getPackageArray($link,$_SESSION["username"],$_POST["pkgid"])["packagepath"];
+            \SkyfallenUpdatesConsole\VCS::newVersion($link,$_SESSION["username"],$_GET["appid"],"MANUALVERSION",$_POST["seed"],$_POST["vid"],"DEFAULT",$_POST["vtitle"],$_POST["description"],$packagepath);
     }
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
     echo "<thead>";
