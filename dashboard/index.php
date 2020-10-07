@@ -161,6 +161,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h4>App ID: <?php echo $_GET["appid"]; ?></h4>
     </div>
     <?php
+    if(isset($_GET["del"])){
+        \SkyfallenUpdatesConsole\Package::deletePackage($link,$_GET["del"],$_SESSION["username"]);
+    }
     echo '<div style="text-align: center; width: 100%; text-align: center; margin-top: 50px;">';
     echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
     echo "<thead>";
@@ -207,7 +210,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     }
     if(isset($_GET["del"])){
         if(!unlink($_GET["del"])){
-            rmdir($_GET["del"]);
+            \SkyfallenUpdatesConsole\Utils::removedir($_GET["del"]);
         }
     }
 

@@ -67,7 +67,10 @@ class Package
         }
         $packagepath = "../".$packages["packagepath"];
         $sql = "DELETE FROM packages WHERE owner='".$username."' and packageid='".$packageid."'";
-        rmdir($packagepath);
+        $oldpath = getcwd();
+        chdir(__DIR__);
+        Utils::removedir($packagepath);
+        chdir($oldpath);
         if(mysqli_query($link,$sql)){
             return true;
         }else {
