@@ -6,6 +6,40 @@ namespace SkyfallenUpdatesConsole;
 
 class VCS
 {
+    public static function newSeed($link,$seedname,$appid,$username){
+        $sql = "INSERT INTO seeds (owner,appid,seed) VALUES ('".$username."','".$appid."','".$seedname."')";
+        if(mysqli_query($link,$sql)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static function deleteSeed($link,$seedname,$appid,$username){
+        $sql = "DELETE FROM seeds WHERE owner='".$username."' and appid='".$appid."' and seed='".$seedname."'";
+        if(mysqli_query($link,$sql)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function listSeeds($link,$appid,$username){
+        $seeds = array();
+        $sql = "SELECT * FROM seeds WHERE owner='".$username."' and appid='".$appid."'";
+        if($res = mysqli_query($link,$sql)){
+            if(mysqli_num_rows($res) > 0){
+             while ($row = mysqli_fetch_array($res)){
+                 array_push($seeds,$row["seed"]);
+             }
+             return $seeds;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public static function newVersion($link,$appid,$type,$seed,$version,$datapath = "DEFAULT",$title,$info,$packagedir){
         if($datapath == "DEFAULT"){
             $datapath = "app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";

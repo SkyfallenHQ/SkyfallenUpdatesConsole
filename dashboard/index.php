@@ -153,7 +153,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     \SkyfallenUpdatesConsole\AppImporter::removeApp($link,$_SESSION["username"],$_GET["del"]);
     echo \SkyfallenUpdatesConsole\Utils::listapps($link,$_SESSION["username"]);
 }
-echo \SkyfallenUpdatesConsole\Package::createPackage($link,"DEFAULT","DEFAULT",$_SESSION["username"],"PKGNAME","APPID","NOT SPECIFIED");
+?>
+<?php if($_GET["page"] == "packages" and isset($_GET["appid"])){
+    ?>
+<div style="margin-left: auto; margin-right: auto; width: 80%; text-align: center;">
+    <h3>App Name: <?php echo \SkyfallenUpdatesConsole\AppImporter::getImportedAppNameFromID($link,$_GET["appid"]); ?></h3>
+    <h4>App ID: <?php echo $_GET["appid"]; ?></h4>
+</div>
+<?php
+
+}
 ?>
 
 </body>

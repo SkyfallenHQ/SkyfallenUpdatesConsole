@@ -20,7 +20,9 @@ class Utils
                     $ret = $ret."<tr>";
                     $ret = $ret."<th scope='col'>App Name</th>";
                     $ret = $ret."<th scope='col'>App ID</th>";
-                    $ret = $ret."<th scope='col'>View Releases</th>";
+                    $ret = $ret."<th scope='col'>View Packages</th>";
+                    $ret = $ret."<th scope='col'>Edit Updates</th>";
+                    $ret = $ret."<th scope='col'>Update Seeds</th>";
                     $ret = $ret."<th scope='col'>Delete</th>";
                     $ret = $ret."</tr>";
                     $ret = $ret."</thead>";
@@ -29,7 +31,9 @@ class Utils
                         $ret = $ret. "<tr>";
                         $ret = $ret. "<td>" . $row['appname'] . "</td>";
                         $ret = $ret. "<td>" . $row['appid'] . "</td>";
-                        $ret = $ret. "<td><a href='?page=releases&appid=" . $row['appid'] . "' >View Releases</a></td>";
+                        $ret = $ret. "<td><a href='?page=packages&appid=" . $row['appid'] . "' >View Packages</a></td>";
+                        $ret = $ret. "<td><a href='?page=updates&appid=" . $row['appid'] . "' >Edit Updates</a></td>";
+                        $ret = $ret. "<td><a href='?page=seeds&appid=" . $row['appid'] . "' >Update Seeds</a></td>";
                         $ret = $ret. "<td><a href='?page=myapps&del=" . $row['appid'] . "' >Delete</a></td>";
                         $ret = $ret. "</tr>";
                     }
@@ -46,4 +50,5 @@ class Utils
             mysqli_close($link);
             return $ret;
         }
+
 }

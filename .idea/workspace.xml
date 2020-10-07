@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9c28b93-375b-48df-9e3e-7361c87fde61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/classes/Package.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/Utils.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/updatecheck/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/AppImporter.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/AppImporter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/DB.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/DB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Package.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Package.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Utils.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/VCS.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/VCS.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +49,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/yigitkeremoktay/SkyfallenUpdateConsole" />
+      </set>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -91,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601926415915</updated>
-      <workItem from="1601926417117" duration="22266000" />
+      <workItem from="1601926417117" duration="32031000" />
     </task>
     <servers />
   </component>
@@ -122,10 +126,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="562" y="293" key="NewPhpClassDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602005517389" />
-    <state x="715" y="490" key="NewPhpFileDialog" timestamp="1601971782347">
+    <state x="715" y="490" key="NewPhpFileDialog" timestamp="1602051021693">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="715" y="490" key="NewPhpFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1601971782347" />
+    <state x="715" y="490" key="NewPhpFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602051021693" />
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1602007768117">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>

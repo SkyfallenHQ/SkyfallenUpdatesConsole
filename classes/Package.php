@@ -63,18 +63,20 @@ class Package
                 while ($row = mysqli_fetch_array($res)){
                     $packages = $row;
                 }
-            } else {
-                return false;
             }
-        }else {
-            return false;
         }
         $packagepath = $packages["packagepath"];
         $sql = "DELETE FROM packages WHERE owner='".$username."' and packageid='".$packageid."'";
-        $packagerealpath = "../".$packagepath;
-        if (file_exists($packagerealpath)) {
-            rmdir($packagerealpath, 0777, true);
-        }
+        $dir = "../".$packagepath;
+            foreach (scandir($dir) as $item) {
+                if ($item == '.' || $item == '..') {
+                    continue;
+                }
+                unlink($item);
+
+            }
+
+        rmdir($dir);
         if(mysqli_query($link,$sql)){
             return true;
         }else {
