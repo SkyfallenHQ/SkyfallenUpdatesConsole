@@ -40,7 +40,7 @@ class VCS
         }
     }
 
-    public static function newVersion($link,$appid,$type,$seed,$version,$datapath = "DEFAULT",$title,$info,$packagedir){
+    public static function newVersion($link,$username,$appid,$type,$seed,$version,$datapath = "DEFAULT",$title,$info,$packagedir){
         if($datapath == "DEFAULT"){
             $datapath = "app-".$appid."/".$seed."/".$type."-updates/".$version.".zip";
         }
@@ -80,7 +80,7 @@ class VCS
 
                 $zip->close();
 
-                $ivsql = "INSERT INTO versions (appid,vtype,seed,versionid,datapath,title,info,releasedate) VALUES ('".$appid."','".$type."','".$seed."','".$version."','".$datapath."','".$title."','".$info."','".date("d/m/Y h:i:sa")."')";
+                $ivsql = "INSERT INTO versions (appid,vtype,seed,versionid,datapath,title,info,releasedate,islatest,owner) VALUES ('".$appid."','".$type."','".$seed."','".$version."','".$datapath."','".$title."','".$info."','".date("d/m/Y h:i:sa")."','NO','".$username."')";
                 if(mysqli_query($link,$ivsql)){
                     return true;
                 } else {
@@ -96,6 +96,38 @@ class VCS
             return true;
         } else {
             return mysqli_error($link);
+        }
+    }
+    public static function listVersions($link,$username,$appid){
+        $versions = array();
+        $sql = "SELECT * FROM versions WHERE owner='".$username."' and appid='".$appid."'";
+        if($res = mysqli_query($link,$sql)){
+            if(mysqli_num_rows($res) > 0){
+                while ($row = mysqli_fetch_array($res)){
+                    $versions[$row["entry"]] = $row["versionid"];
+                }
+                return $versions;
+            } else {
+                return false;
+            }
+        }else {
+            return false;
+        }
+    }
+    public static function getVersionData($link,$username,$appid,$versionentry){
+        $versiondata = array();
+        $sql = "SELECT * FROM versions WHERE owner='".$username."' and appid='".$appid."' and entry='".$versionentry."'";
+        if($res = mysqli_query($link,$sql)){
+            if(mysqli_num_rows($res) == 1){
+                while ($row = mysqli_fetch_array($res)){
+                    $versiondata = $row;
+                }
+                return $versiondata;
+            } else {
+                return false;
+            }
+        }else {
+            return false;
         }
     }
 }

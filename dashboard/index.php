@@ -5,6 +5,7 @@ require_once "../classes/Utils.php";
 require_once "../classes/error.php";
 require_once "../classes/DB.php";
 require_once "../classes/Package.php";
+require_once "../classes/VCS.php";
 require_once "../configuration.php";
 require_once "../vendor/autoload.php";
 session_name("DeveloperIDSession");
@@ -304,5 +305,92 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 
+<?php if($_GET["page"] == "seeds" and isset($_GET["appid"])){
+    if($_POST["newseedname"]){
+        \SkyfallenUpdatesConsole\VCS::newSeed($link,$_POST["newseedname"],$_GET["appid"],$_SESSION["username"]);
+        //header("location: ?page=seeds&appid=".$_GET["appid"]);
+    }
+    if($_GET["del"]){
+        \SkyfallenUpdatesConsole\VCS::deleteSeed($link,$_GET["del"],$_GET["appid"],$_SESSION["username"]);
+        header("location: ?page=seeds&appid=".$_GET["appid"]);
+    }
+    $seeds = \SkyfallenUpdatesConsole\VCS::listSeeds($link,$_GET["appid"],$_SESSION["username"]);
+    ?>
+    <form method="post" style="width: 40%; margin-right: auto; margin-left: auto; text-align: center;">
+        <h3>App Name: <?php echo \SkyfallenUpdatesConsole\AppImporter::getImportedAppNameFromID($link,$_GET["appid"]); ?></h3>
+        <h4>App ID: <?php echo $_GET["appid"]; ?></h4>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Seed Name" aria-label="New Seed" name="newseedname" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create New Seed</button>
+            </div>
+        </div>
+    </form>
+    <?php
+    echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th scope='col'>Seed Name</th>";
+    echo "<th scope='col'>Delete</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    foreach ($seeds as $seed){
+        echo "<tr>";
+        echo "<td>".$seed."</td>";
+        echo "<td><a href='?page=seeds&appid=".$_GET["appid"]."&del=".$seed."'>"."DELETE"."</a></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+
+}
+?>
+<?php if($_GET["page"] == "updates" and isset($_GET["appid"])){
+    if($_POST["newversionid"]){
+
+    }
+    if($_GET["del"]){
+
+    }
+    $versions = \SkyfallenUpdatesConsole\VCS::listVersions($link,$_SESSION["username"],$_GET["appid"]);
+    ?>
+    <form method="post" style="width: 40%; margin-right: auto; margin-left: auto; text-align: center;">
+        <h3>App Name: <?php echo \SkyfallenUpdatesConsole\AppImporter::getImportedAppNameFromID($link,$_GET["appid"]); ?></h3>
+        <h4>App ID: <?php echo $_GET["appid"]; ?></h4>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Seed Name" aria-label="New Seed" name="newseedname" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create New Seed</button>
+            </div>
+        </div>
+    </form>
+    <?php
+    echo "<table class='table' style='width:80%; margin-right: auto; margin-left: auto;'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th scope='col'>Version ID</th>";
+    echo "<th scope='col'>Seed</th>";
+    echo "<th scope='col'>Title</th>";
+    echo "<th scope='col'>Is Latest?</th>";
+    echo "<th scope='col'>Release Date</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    foreach ($versions as $version){
+        echo "<tr>";
+        $vdata = \SkyfallenUpdatesConsole\VCS::getVersionData($link,$_SESSION["username"],$_GET["appid"],$version);
+        echo "<td>".$vdata["versionid"]."</td>";
+        echo "<td>".$vdata["seed"]."</td>";
+        echo "<td>".$vdata["title"]."</td>";
+        echo "<td>".$vdata["islatest"]."</td>";
+        echo "<td>".$vdata["releasedate"]."</td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+
+}
+?>
 </body>
 </html>
