@@ -24,9 +24,9 @@ class Package
             return false;
         }
     }
-    static public function listPackages($link,$username){
+    static public function listPackages($link,$username,$appid){
         $packages = array();
-        $sql = "SELECT * FROM packages WHERE owner='".$username."'";
+        $sql = "SELECT * FROM packages WHERE owner='".$username."' and appid='".$appid."'";
         if($res = mysqli_query($link,$sql)){
             if(mysqli_num_rows($res) > 0){
                 while ($row = mysqli_fetch_array($res)){
@@ -65,18 +65,9 @@ class Package
                 }
             }
         }
-        $packagepath = $packages["packagepath"];
+        $packagepath = "../".$packages["packagepath"];
         $sql = "DELETE FROM packages WHERE owner='".$username."' and packageid='".$packageid."'";
-        $dir = "../".$packagepath;
-            foreach (scandir($dir) as $item) {
-                if ($item == '.' || $item == '..') {
-                    continue;
-                }
-                unlink($item);
-
-            }
-
-        rmdir($dir);
+        rmdir($packagepath);
         if(mysqli_query($link,$sql)){
             return true;
         }else {
