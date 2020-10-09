@@ -20,15 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9c28b93-375b-48df-9e3e-7361c87fde61" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/provider/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SkyfallenUpdateConsole.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SkyfallenUpdateConsole.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updatecheck/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/updatecheck/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="bc000557-6c2a-4f1b-9202-93afd83ef4db" />
@@ -38,8 +40,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="composer.json" />
         <option value="CSS File" />
+        <option value="composer.json" />
       </list>
     </option>
   </component>
@@ -68,6 +70,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -77,12 +80,6 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
-      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -91,7 +88,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601926415915</updated>
-      <workItem from="1601926417117" duration="53808000" />
+      <workItem from="1601926417117" duration="54056000" />
+      <workItem from="1602098436600" duration="7000" />
+      <workItem from="1602159299962" duration="9000" />
+      <workItem from="1602268181204" duration="37000" />
+      <workItem from="1602268951846" duration="1162000" />
     </task>
     <servers />
   </component>
@@ -108,12 +109,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="258" key="#CLI_Interpreters" timestamp="1601974931957">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="484" y="258" key="#CLI_Interpreters/0.0.1792.1120@0.0.1792.1120" timestamp="1601974931957" />
+    <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602269104311">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602269104311" />
     <state x="650" y="449" width="491" height="293" key="ComposerInitDialogKey" timestamp="1601974937125">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -122,10 +128,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="562" y="293" key="NewPhpClassDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602005517389" />
-    <state x="715" y="490" key="NewPhpFileDialog" timestamp="1602051021693">
+    <state x="715" y="490" key="NewPhpFileDialog" timestamp="1602269333377">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="715" y="490" key="NewPhpFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602051021693" />
+    <state x="715" y="490" key="NewPhpFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602269333377" />
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1602007768117">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>

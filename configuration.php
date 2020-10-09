@@ -33,7 +33,7 @@ if ($loginlink === false) {
 }
 
 // Code Required By Skyfallen Code Library Classes
-// Do not edit
+// Edit to your needs
 define("API_ENDPOINT","https://devlogin.api.theskyfallen.com/api/");
 define("API_TYPE","SKYFALLENAPPCENTERAPI");
 define("CONNECTION_INFASTRUCTURE","INTERNET");
@@ -43,3 +43,15 @@ define("APPID","459d38c4d473e7dfdd464e01b9955eb9");
 define("LIVEPATCHING_ENABLED",false);
 define("DLDOMAIN","https://updateserver.theskyfallen.com");
 define("PANELDOMAIN","https://updatesconsole.theskyfallen.com");
+
+//Update Provider Info
+//Please edit for your needs
+define("PROVIDER","The Skyfallen Company");
+define("PROVIDER_URL","https://theskyfallen.company");
+define("PROVIDER_LOCATION","Ankara, Turkey");
+define("PROVIDER_OU","Software Distribution");
+define("PROVIDER_CONTACT_NAME","Skyfallen Official Support");
+define("PROVIDER_CONTACT_EMAIL","support@theskyfallen.com");
+define("PROVIDER_CONTACT_URL","https://help.theskyfallen.com");
+define("PROVIDER_INFO","Official Skyfallen Software Update Directory");
+define("PROVIDER_TYPE","PUBLIC"); //PUBLIC, PRIVATE, DEVELOPMENT
