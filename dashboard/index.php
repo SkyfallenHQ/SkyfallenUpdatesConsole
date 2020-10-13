@@ -188,7 +188,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: ?page=packages&appid=".$_GET["appid"]);
     }
     if(isset($_GET["del"])){
-        \SkyfallenUpdatesConsole\Package::deletePackage($link,$_GET["del"],$_SESSION["username"]);
+        echo \SkyfallenUpdatesConsole\Package::deletePackage($link,$_GET["del"],$_SESSION["username"]);
         header("location: ?page=packages&appid=".$_GET["appid"]);
     }
     echo '<div style="text-align: center; width: 100%; text-align: center; margin-top: 50px;">';
@@ -365,7 +365,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: ?page=".$_GET["page"]."&appid=".$_GET["appid"]);
     }
     if($_GET["makelatest"]){
-        \SkyfallenUpdatesConsole\VCS::makeLatest($link,$_SESSION["username"],$_GET["appid"],$_GET["makelatest"]);
+        \SkyfallenUpdatesConsole\VCS::makeLatest($link,$_SESSION["username"],$_GET["appid"],$_GET["makelatest"],$_GET["seed"]);
         header("location: ?page=".$_GET["page"]."&appid=".$_GET["appid"]);
     }
     if(isset($_POST["vid"]) and isset($_POST["vtitle"]) and isset($_POST["description"]) and $_POST["description"] != "" and $_POST["vtitle"] != "" and $_POST["vid"] != ""){
@@ -428,7 +428,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         echo "<td>".$vdata["seed"]."</td>";
         echo "<td>".$vdata["title"]."</td>";
         if($vdata["islatest"] == "NO"){
-            echo "<td>".$vdata["islatest"]." <a href='?page=updates&appid=".$_GET["appid"]."&makelatest=".$vdata["versionid"]."'>Make Latest?</a></td>";
+            echo "<td>".$vdata["islatest"]." <a href='?page=updates&appid=".$_GET["appid"]."&makelatest=".$vdata["versionid"]."&seed=".$vdata["seed"]."'>Make Latest?</a></td>";
         }else{
             echo "<td>".$vdata["islatest"]."</td>";
         }

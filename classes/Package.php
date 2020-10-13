@@ -57,17 +57,18 @@ class Package
             return false;
         }
     }
-    static public function deletePackage($link,$packageid,$username){
-        $sql = "SELECT * FROM packages WHERE owner='".$username."' and packageid='".$packageid."'";
-        if($res = mysqli_query($link,$sql)){
-            if(mysqli_num_rows($res) == 1){
-                while ($row = mysqli_fetch_array($res)){
+    static public function deletePackage($link,$packageid,$username)
+    {
+        $sql = "SELECT * FROM packages WHERE owner='" . $username . "' and packageid='" . $packageid . "'";
+        if ($res = mysqli_query($link, $sql)) {
+            if (mysqli_num_rows($res) == 1) {
+                while ($row = mysqli_fetch_array($res)) {
                     $packages = $row;
                 }
             }
         }
-        $packagepath = "../".$packages["packagepath"];
-        $sql = "DELETE FROM packages WHERE owner='".$username."' and packageid='".$packageid."'";
+        $packagepath = "../" . $packages["packagepath"];
+        $sql = "DELETE FROM packages WHERE owner='" . $username . "' and packageid='" . $packageid . "'";
         $oldpath = getcwd();
         chdir(__DIR__);
         Utils::removedir($packagepath);

@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9c28b93-375b-48df-9e3e-7361c87fde61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/provider/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SkyfallenUpdateConsole.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SkyfallenUpdateConsole.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Package.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Package.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,9 @@
       <workItem from="1602098436600" duration="7000" />
       <workItem from="1602159299962" duration="9000" />
       <workItem from="1602268181204" duration="37000" />
-      <workItem from="1602268951846" duration="1162000" />
+      <workItem from="1602268951846" duration="2935000" />
+      <workItem from="1602360901715" duration="2000" />
+      <workItem from="1602361773147" duration="568000" />
     </task>
     <servers />
   </component>
