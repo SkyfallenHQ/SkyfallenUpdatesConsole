@@ -10,7 +10,7 @@ require_once "../configuration.php";
 require_once "../vendor/autoload.php";
 session_name("DeveloperIDSession");
 session_start();
-if(SANDOX) {
+if(SANDBOX) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
